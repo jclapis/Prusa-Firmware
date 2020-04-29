@@ -980,6 +980,14 @@ static void w25x20cl_err_msg()
 	lcd_puts_P(_n("External SPI flash\nW25X20CL is not res-\nponding. Language\nswitch unavailable."));
 }
 
+
+void ConfigureLaserPin()
+{
+  pinMode(LASER_PIN, OUTPUT);
+  digitalWrite(LASER_PIN, LOW);
+}
+
+
 // "Setup" function is called by the Arduino framework on startup.
 // Before startup, the Timers-functions (PWM)/Analog RW and HardwareSerial provided by the Arduino-code 
 // are initialized by the main() routine provided by the Arduino framework.
@@ -1623,6 +1631,10 @@ void setup()
 #ifdef WATCHDOG
   wdt_enable(WDTO_4S);
 #endif //WATCHDOG
+
+
+// === Custom laser support here ===
+ConfigureLaserPin();
 }
 
 
@@ -5483,6 +5495,11 @@ if(eSoundMode!=e_SOUND_MODE_SILENT)
         int pin_number = LED_PIN;
         if (code_seen('P') && pin_status >= 0 && pin_status <= 255)
           pin_number = code_value();
+        if(pin_number == LASER_PIN)
+        {
+          analogWrite(pin_number, pin_status);
+          break;
+        }
         for(int8_t i = 0; i < (int8_t)(sizeof(sensitive_pins)/sizeof(int)); i++)
         {
           if (sensitive_pins[i] == pin_number)
