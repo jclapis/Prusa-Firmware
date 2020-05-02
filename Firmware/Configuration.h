@@ -17,11 +17,11 @@ extern PGM_P sPrinterName;
 
 // Firmware version
 #define FW_VERSION "3.8.1"
-#define FW_COMMIT_NR   "Laser-Mod-0.1"
+#define FW_COMMIT_NR   LM4
 // FW_VERSION_UNKNOWN means this is an unofficial build.
 // The firmware should only be checked into github with this symbol.
 #define FW_DEV_VERSION FW_VERSION_UNKNOWN
-#define FW_REPOSITORY "Unknown"
+#define FW_REPOSITORY "JClapis Laser Mod"
 #define FW_VERSION_FULL FW_VERSION "-" STR(FW_COMMIT_NR)
 
 // G-code language level

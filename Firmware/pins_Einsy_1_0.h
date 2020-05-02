@@ -18,7 +18,10 @@
 #define W25X20CL                 // external 256kB flash
 #define BOOTAPP                  // bootloader support
 
-#define LASER_PIN 2 // Digital pin 2, which is the unused pin 3 on the J19 header
+// The pin for laser TTL control - this must have hardware PWM,
+// must not be on timer 1 (so no pin 11 or 12), and must not be
+// used by any of the normal firmware.
+#define LASER_PIN  5 
 
 #define SWI2C_SDA      20 //SDA on P3
 #define SWI2C_SCL      21 //SCL on P3
