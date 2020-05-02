@@ -983,8 +983,12 @@ static void w25x20cl_err_msg()
 
 void ConfigureLaserPin()
 {
+  // Set the laser pin to output mode, and set it to 0 by default
   pinMode(LASER_PIN, OUTPUT);
   digitalWrite(LASER_PIN, LOW);
+
+  // Set the timer prescaler to 8, which should make this PWM frequency 3921.16 Hz.
+  setPwmFrequency(LASER_PIN, 2);
 }
 
 
@@ -8715,7 +8719,7 @@ void Stop()
 
 bool IsStopped() { return Stopped; };
 
-#ifdef FAST_PWM_FAN
+//#ifdef FAST_PWM_FAN
 void setPwmFrequency(uint8_t pin, int val)
 {
   val &= 0x07;
@@ -8783,7 +8787,7 @@ void setPwmFrequency(uint8_t pin, int val)
 
   }
 }
-#endif //FAST_PWM_FAN
+//#endif //FAST_PWM_FAN
 
 //! @brief Get and validate extruder number
 //!

@@ -284,9 +284,9 @@ FORCE_INLINE unsigned long millis_nc() {
 #endif //SYSTEM_TIMER_2
 }
 
-#ifdef FAST_PWM_FAN
+//#ifdef FAST_PWM_FAN
 void setPwmFrequency(uint8_t pin, int val);
-#endif
+//#endif
 
 #ifndef CRITICAL_SECTION_START
   #define CRITICAL_SECTION_START  unsigned char _sreg = SREG; cli();
